@@ -1,0 +1,102 @@
+
+    .image{
+      background-image:url(https://img.freepik.com/free-vector/designer-girl-concept-illustration_114360-4455.jpg?size=338&ext=jpg&ga=GA1.2.2060460398.1631836800);
+      background-repeat:no-repeat;
+      background-size:400px;
+      height:400px;
+      margin-left:450px;
+      margin-top:-280px;
+    }
+    header{
+      background-color:white;
+      height:50px;
+    }
+    .header-text{
+      color:black;
+      text-decoration:none;
+      font-size:30px;
+      float:left;
+    }
+    .nav{
+      float:right;
+      margin-top:10px;
+    }
+    .nav > a{
+      text-decoration:none;
+      padding:10px 16px;
+      color:black;
+      font-family: 'Titillium Web', sans-serif;
+    }
+    .nav >a:hover{
+     color:#04afb5;
+      text-shadow:0px 0px 10px blue;
+    }
+    .log-sign-in{
+      background-color:#236ee8;
+      color:white !important;
+      border-radius:9px;
+    }
+    h2{
+      font-size:50px;
+      font-family: 'Abril Fatface', cursive;
+    }
+    p{
+      max-width:400px;
+      font-family: 'Inconsolata', monospace;
+    }
+    .button{
+      background-image:linear-gradient(90deg,#34b1eb,#cfeb34);
+      border-style:none;
+      padding:10px 15px;
+      border-radius:10px 5px 20px 1px;
+      font-family: 'Prata', serif;
+    }
+    .button:hover{
+      background-image:linear-gradient(50deg,#34eb5e,#34eb5e);
+    }
+    .search{
+      background-color:#5f02f5;
+      float:right;
+      width:500px;
+      margin-right:60px;
+      margin-bottom:50px;
+      margin-top:-100px;
+      border-radius:50px 10px;
+    }
+    .text-search{
+      padding:10px 50px;
+      text-align:left;
+      margin-top:19px;
+      margin-left:50px;
+    }
+    .search-button{
+      padding:11px 30px;
+      background-color:#04de7c;
+      border-style:none;
+      margin-left:-5px;
+      color:white;
+    }
+    .search-button:hover{
+      background-color:#07e35f;
+    }
+    .search> ul{
+      list-style-type:none;  display:inline-flex;
+    }
+    .search> ul>li{
+     margin-left:17px;
+      color:white;
+    }
+    span{
+    color:#02f59c;
+    }
+    .foot{
+      font-size:30px;
+      margin-top:50px;
+      font-family: 'Patua One', cursive;
+    }
+    .text-foot{
+      font-family: 'Prata', serif;
+    }
+    .log-sign-in:hover{
+      background-color:#07e39a;
+    }
