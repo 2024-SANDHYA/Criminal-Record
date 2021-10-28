@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(255, 255, 255);
+}
+.navbar{
+  font-family: 'Montserrat', sans-serif;
+  background-color: rgba(248, 248, 248, 0);
+  color: #000000;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.navbar h1 {
+  padding-left: 30px;
+  font-size: 2em;
+  color: #000000;
+}
+.navbar .links {
+  margin-left: auto;
+  padding-right: 30px;
+}
+.navbar a {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+}
+.navbar a:hover {
+  color: #6b0707;
+}
+.navbar a:visited{
+  color:#051f33;
+}
+.map{
+  margin-top: 70px;
+  margin-left: 750px;
+}
+.log-sign-in{
+  background-color:#236ee8;
+  color:white !important;
+  border-radius:9px;
+  padding:10px 15px;
+  margin-left: 150px;
+  border-radius:10px;
+  font-family: 'Prata', serif;
+}
+h2{
+  font-family: 'Abril Fatface', cursive;
+  padding-left: 60px;
+  font-size:3em;
+  
+}
+.left p{
+  padding-left: 60px;
+  max-width:400px;
+  font-family: 'Inconsolata', monospace;
+}
+.log-sign-in:hover{
+  background-color:#07e39a;
+}
+.homepage{
+  display: flex;
+}
+.left{
+  margin-top: 50px;
+}
+.image{
+  background-image:url(https://img.freepik.com/free-vector/designer-girl-concept-illustration_114360-4455.jpg?size=338&ext=jpg&ga=GA1.2.2060460398.1631836800);
+  background-repeat:no-repeat;
+  background-size:500px;
+  height:500px;
+  width: 500px;
+  margin-left:200px;
+  margin-top:70px;
+}
