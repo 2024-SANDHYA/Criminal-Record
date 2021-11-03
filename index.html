@@ -14,7 +14,7 @@
 </head>
 <body>
 
-  <header>
+  <header id="navbar">
     <a href="#" class="header-text">Main</a>
     <div class="nav">
       <a href="#">Home</a>
@@ -25,14 +25,33 @@
   </header>
 
   <h2 class="bold-text">Following
-    <br>Your
-    <br>Foot-prints</h2>
+    <br>You !!
+    </h2>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
   ut labore et dolore magna aliqua.</p>
+
 
   <span><a href="#"></a></span>
   <div class="image">
   </div>
-
+  <script>
+  // When the user scrolls the page, execute myFunction
+  window.onscroll = function() {myFunction()};
+  
+  // Get the navbar
+  var navbar = document.getElementById("navbar");
+  
+  // Get the offset position of the navbar
+  var sticky = navbar.offsetTop;
+  
+  // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+  function myFunction() {
+    if (window.pageYOffset >= sticky) {
+      navbar.classList.add("sticky")
+    } else {
+      navbar.classList.remove("sticky");
+    }
+  } 
+</script>
 </body>
 </html>
