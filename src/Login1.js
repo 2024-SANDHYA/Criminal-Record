@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, sendSignInLinkToEmail } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification} from "firebase/auth";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 // import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { getFirestore } from "firebase/firestore";
@@ -23,7 +24,8 @@ const Login1 = () => {
         measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
       };
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    const auth = getAuth();
+
     require("firebase/firestore");
     const db = getFirestore();
     const provider = new GoogleAuthProvider();
@@ -55,53 +57,69 @@ const Login1 = () => {
         return email.length > 0 && password.length > 0;
       }
     
-      function handleSubmit(event) {
-        event.preventDefault();
-        if(email!="" && password.length>6){
-          createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            console.log("created");
-            console.log(user.displayName, user.emailVerified, user.metadata);
-            // ...
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-            // ..
-          });
-          
-          const actionCodeSettings = {
-            // URL you want to redirect back to. The domain (www.example.com) for this
-            // URL must be in the authorized domains list in the Firebase Console.
-            url: 'http://localhost:3000/login',
-            // This must be true.
-            handleCodeInApp: true
-          }
-    
-          sendSignInLinkToEmail(auth, email, actionCodeSettings)
-        .then(() => {
-          console.log("email sent");
-          // The link was successfully sent. Inform the user.
-          // Save the email locally so you don't need to ask the user for it again
-          // if they open the link on the same device.
-          window.localStorage.setItem('emailForSignIn', email);
+      function handleSubmit() {
+
+        // const actionCodeSettings = {
+        //   // URL you want to redirect back to. The domain (www.example.com) for this
+        //   // URL must be in the authorized domains list in the Firebase Console.
+        //   url: 'https://localhost:3000',
+        //   // This must be true.
+        //   handleCodeInApp: true
+        // }
+
+        // createUserWithEmailAndPassword(auth, email , password)
+        // .then((userCredential)=>{
+        //   const user = userCredential.user;
+        //   sendEmailVerification(user, actionCodeSettings);
+        //   alert("Email sent");
+        //   console.log(user.emailVerified);
+        // })
+        // .catch(alert);
+        
+
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          console.log(user);
           // ...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
-          // ...
+          // ..
         });
+
+        const user = auth.currentUser;
+        if (user !== null) {
+          user.providerData.forEach((profile) => {
+            console.log("  Sign-in provider: " + profile.providerId);
+            console.log("  Provider-specific UID: " + profile.uid);
+            console.log("  Name: " + profile.displayName);
+            console.log("  Email: " + profile.email);
+            console.log("  Photo URL: " + profile.photoURL);
+          });
         }
+
+        // signInWithEmailAndPassword(auth, email, password)
+        // .then((userCredential) => {
+        //   // Signed in 
+        //   const user = userCredential.user;
+        //   // ...
+        // })
+        // .catch((error) => {
+        //   const errorCode = error.code;
+        //   const errorMessage = error.message;
+        // });
+
+
+
+
       }
     
       return (
         <div className="Login">
-          {/* <Form onSubmit={handleSubmit}> */}
+          <Form>
             <Form.Group controlId="email">
               <Form.Label>Email </Form.Label>
               <Form.Control
@@ -120,11 +138,12 @@ const Login1 = () => {
               />
             </Form.Group>
             <br />
-            <Button type="submit" disabled={!validateForm()} onClick={handleSubmit}>
-              Sign up
-            </Button><br></br>
-            <button onClick={signinwithgoogle}>Google</button>
-          {/* </Form> */}
+            <Button disabled={!validateForm()} onClick={handleSubmit}>
+              Login
+            </Button><br /><br />
+            <button onClick={signinwithgoogle}>Google</button><br />
+          </Form>
+          <div className="signup">Don't have an account?<Link exact path="/Signup">Sign up</Link></div>
         </div>
       );
 }

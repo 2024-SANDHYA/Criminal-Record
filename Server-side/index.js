@@ -19,7 +19,6 @@ app.get("/Map", (req, res) => {
             res.json(result);
         }
     })
-    CrimeModel.fin
 })
 
 app.post("/create", async (req, res) => {
