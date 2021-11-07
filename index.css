@@ -5,15 +5,32 @@ body{
   padding: 0;
   margin: 0;
 }
-    .image{
+    .vert-move{
       /* background-image:url(https://img.freepik.com/free-vector/designer-girl-concept-illustration_114360460398.1631836800); */
-      background-image:url(./assets/banner.png);
+      background-image:url(./assets/banner-modified\ 1.png);
       background-repeat:no-repeat;
-      background-size:400px;
-      height:400px;
+      background-size:350px;
+      height:350px;
       margin-left:850px;
       margin-top:-340px;
+      -webkit-animation: mover 1s infinite  alternate;
+      animation: mover 1s infinite  alternate;
+      -webkit-animation: mover 1s infinite  alternate;
+      animation: mover 1s infinite  alternate;
     }
+
+  @-webkit-keyframes mover {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+  }
+  @keyframes mover {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+  }
+  
+
+
+
     header{
       background-color:white;
       height:50px;
