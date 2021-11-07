@@ -1,11 +1,18 @@
-
+body{
+  background-image:url(./assets/Untitled.png);
+  background-repeat:no-repeat;
+  background-size:100%;
+  padding: 0;
+  margin: 0;
+}
     .image{
-      background-image:url(https://img.freepik.com/free-vector/designer-girl-concept-illustration_114360-4455.jpg?size=338&ext=jpg&ga=GA1.2.2060460398.1631836800);
+      /* background-image:url(https://img.freepik.com/free-vector/designer-girl-concept-illustration_114360460398.1631836800); */
+      background-image:url(./assets/banner.png);
       background-repeat:no-repeat;
       background-size:400px;
       height:400px;
-      margin-left:450px;
-      margin-top:-280px;
+      margin-left:850px;
+      margin-top:-340px;
     }
     header{
       background-color:white;
