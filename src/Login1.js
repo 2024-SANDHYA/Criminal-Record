@@ -111,7 +111,7 @@ const Login1 = () => {
         //   const errorCode = error.code;
         //   const errorMessage = error.message;
         // });
-
+        
 
 
 
@@ -143,7 +143,7 @@ const Login1 = () => {
             </Button><br /><br />
             <button onClick={signinwithgoogle}>Google</button><br />
           </Form>
-          <div className="signup">Don't have an account?<Link exact path="/Signup">Sign up</Link></div>
+          <div className="signup">Don't have an account?<Link to="/signup">Sign up using email</Link></div>
         </div>
       );
 }

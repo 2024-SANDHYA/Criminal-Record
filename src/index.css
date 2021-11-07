@@ -93,6 +93,23 @@ body {
 .Login Button{
   margin-left: 105px;
 }
+.signup{
+  margin-left: 10px;
+}
+.Signup {
+  margin-left: 550px;
+  margin-top: 100px;
+}
+#email.form-control {
+  width: 300px;
+}
+#password.form-control{
+  width: 300px;
+}
+.Signup Button{
+  margin-left: 105px;
+}
+
 h2{
   font-family: 'Abril Fatface', cursive;
   padding-left: 60px;

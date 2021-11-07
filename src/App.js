@@ -5,6 +5,7 @@ import Map from './Map.js';
 import Login1 from './Login1.js';
 import Home from './Home';
 import Metadata from './Metadata';
+import Signup from './Signup';
 
 function App() {
   return (
@@ -28,6 +29,12 @@ function App() {
         <div className="loginpage">
           <Route exact path="/login" component={Login1}>
             <Login1 />
+          </Route>
+        </div>
+
+        <div className="signup">
+          <Route exact path="/signup" component={Signup}>
+            <Signup />
           </Route>
         </div>
 

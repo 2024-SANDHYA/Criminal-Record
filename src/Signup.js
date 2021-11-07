@@ -21,7 +21,7 @@ const Login1 = () => {
         measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
       };
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    const auth = getAuth();
     require("firebase/firestore");
     const db = getFirestore();
     
@@ -40,6 +40,10 @@ const Login1 = () => {
         console.log(errorCode, errorMessage);
         // ..
       });
+      const docRef = addDoc(collection(db, "users"), {
+        email: email,
+        password: password,
+      });
     }
 
   
@@ -54,8 +58,8 @@ const Login1 = () => {
       }
     
       return (
-        <div className="Login">
-          <Form onSubmit={handleSubmit}>
+        <div className="Signup">
+          <Form>
             <Form.Group controlId="email">
               <Form.Label>Email </Form.Label>
               <Form.Control
@@ -74,7 +78,7 @@ const Login1 = () => {
               />
             </Form.Group>
             <br />
-            <Button type="submit" disabled={!validateForm()}>
+            <Button disabled={!validateForm()} onClick={handleSubmit}>
               Signup
             </Button>
           </Form>

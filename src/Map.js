@@ -15,6 +15,7 @@ const Map = () => {
     const [ReportedBy, setReportedBy] = useState("");
     const [age, setAge] = useState(0);
     const [CrimeBeingReported, setCrimeBeingReported] = useState("");
+    const [locality, setLocality] = useState('');
 
     useEffect(() => {
         Axios.get("http://localhost:3001/Map")
