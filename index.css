@@ -5,14 +5,23 @@ body{
   padding: 0;
   margin: 0;
 }
+.image{
+  height:50px;
+  margin-bottom: 10%;
+  padding-left: 20px;
+  padding-top: 7px;
+}
+.image:hover{
+  transform: scale(1.4);
+  transition: 0.5s all ease-in-out;
+}
     .vert-move{
-      /* background-image:url(https://img.freepik.com/free-vector/designer-girl-concept-illustration_114360460398.1631836800); */
       background-image:url(./assets/final-banner.png);
       background-repeat:no-repeat;
-      background-size:350px;
+      background-size:300px;
       height:350px;
       margin-left:850px;
-      margin-top:-340px;
+      margin-top:-240px;
       -webkit-animation: mover 1s infinite  alternate;
       animation: mover 1s infinite  alternate;
       -webkit-animation: mover 1s infinite  alternate;
@@ -28,12 +37,9 @@ body{
       100% { transform: translateY(-10px); }
   }
   
-
-
-
     header{
       background-color:white;
-      height:50px;
+      height:60px;
     }
     .header-text{
       color:black;
@@ -45,7 +51,7 @@ body{
       float:right;
       margin-top:10px;
     }
-    .nav > a{
+    .nav a{
       text-decoration:none;
       padding:10px 16px;
       color:black;
@@ -55,14 +61,7 @@ body{
      color:#04afb5;
       text-shadow:0px 0px 10px blue;
     } */
-    .log-sign-in{
-      background-color:#236ee8;
-      color:white !important;
-      border-radius:9px;
-      padding:10px 15px;
-      border-radius:10px;
-      font-family: 'Prata', serif;
-    }
+
     h2{
       font-size:50px;
       font-family: 'Abril Fatface', cursive;
@@ -71,9 +70,7 @@ body{
       max-width:400px;
       font-family: 'Inconsolata', monospace;
     }
-    .log-sign-in:hover{
-      background-color:#07e39a;
-    }
+
     .content {
       padding: 16px;
     }
