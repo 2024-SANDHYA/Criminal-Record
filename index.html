@@ -13,7 +13,7 @@
 </head>
 <body>
 
-  <header>
+  <header id="navbar">
     <a href="#" class="header-text">Main</a>
     <div class="nav">
       <a href="#">Home</a>
@@ -30,6 +30,29 @@
   <button type="button" class="log-sign-in">GET STARTED</button>
   <div class="vert-move">
   </div>
+
+  <h2>Design,
+    <br>Developement,
+    <br>Hosting</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  <button type="button" class="log-sign-in">GET STARTED</button>
+  <div class="vert-move">
+  </div>
+
+  <script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+} 
+  </script>
 
 </body>
 </html>

@@ -74,3 +74,23 @@ body{
     .log-sign-in:hover{
       background-color:#07e39a;
     }
+    .content {
+      padding: 16px;
+    }
+    
+        .sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+      background-color: #f5ab7a;
+    }
+    
+.sticky + .content {
+      padding-top: 60px;
+    }
+
+    #navbar{
+      overflow: hidden;
+
+    }
