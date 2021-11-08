@@ -179,6 +179,14 @@ body{
         background-color:rgb(255, 255, 255);
         color: #000;
       }
+
+      hr{ 
+        height:20px;
+        padding:0px;
+        margin:0px;
+        background-color:#af954c;
+        border:none;
+      } 
 /*============== How it Works ============== */
 a{
   text-decoration:none;
