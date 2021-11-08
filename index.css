@@ -26,7 +26,7 @@ body{
       background-size:300px;
       height:350px;
       margin-left:950px;
-      margin-top:-320px;
+      margin-top:-390px;
       -webkit-animation: mover 1s infinite  alternate;
       animation: mover 1s infinite  alternate;
       -webkit-animation: mover 1s infinite  alternate;
@@ -90,7 +90,31 @@ body{
       background-color: #f5ab7a;
       /* shadow:0px 0px 10px blue; */
     }
+
+
+.get-stat{
+  padding-left: 5%;
+}
+    .btn {
+      background-color: #af954c; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      border-radius:25px;
+      cursor: pointer;
+    }
+
     
+    .btn:hover{
+      border: solid #af954c;
+      background-color:azure;
+      color: #000;
+    }
 .sticky + .content {
       padding-top: 60px;
     }
