@@ -315,7 +315,7 @@ hr{
  margin-left: 200px;;
 }
 span{
-  color: red;
+  color: rgb(255, 123, 0);
 }
 .foot p {
   padding-left: 5%;
@@ -323,7 +323,7 @@ span{
 }
 
 .foot2 p{
-background-color:#273036;
+background-color:#4c5358;
 text-align: center;
 margin-bottom: 0px;
 padding-bottom: 0px;
@@ -358,15 +358,13 @@ i:nth-child(1):hover{
 i:nth-child(2):hover{
   color: #1DA1F2;
 }
-
-.fa-github:nth-child(1):hover{
-  color: #afb4b6;
+i:nth-child(3):hover{
+  color: #ec0000;
+}
+i:nth-child(4):hover{
+  color: #1DA1F2;
 }
 
-.fas:nth-child(1):hover{
-  color: #7ea19d;
-
-}
 
 .f2{
   font-size:18px;
@@ -383,20 +381,9 @@ i:nth-child(2):hover{
   margin: 0 10px;
 }
 
-.socials a{
-  text-decoration: none;
-  color: #fff;
-  border: 1.1px solid white;
-  padding: 5px;
-  border-radius: 50%;
-}
 
 .socials a i{
   font-size: 1.1rem;
   width: 20px;
   transition: color .4s ease;
-}
-
-.socials a:hover i{
-  color: aqua;
 }
