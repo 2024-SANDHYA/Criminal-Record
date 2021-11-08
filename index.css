@@ -86,13 +86,12 @@ body{
       padding: 16px;
     }
     
-        .sticky {
+.sticky {
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1;
-      background-color: #f5ab7a;
-      /* shadow:0px 0px 10px blue; */
+      background-color: #e9e7e5;
     }
 
 
@@ -289,6 +288,9 @@ a{
   justify-content: center;
   align-items: center;
 }
+.block{
+  color:#af954c;
+}
 .s-box{
   display:flex;
   flex-direction: column;
@@ -316,17 +318,7 @@ a{
   color: rgba(87,105,117,0.90);
   text-align: center;
 }
-.s-btn{
-  width: 140px;
-  height: 40px;
-  border-radius: 20px;
-  border:1px solid rgba(74,144,226,0.50);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color:#576975;
-  margin-top:10px; 
-}
+
 .bar{
   width: 100px;
   height: 6px;
@@ -334,7 +326,7 @@ a{
   left: 50%;
   top: 0%;
   transform: translateX(-50%);
-  background-color:#4a90e2; 
+  background-color:#af954c; 
   border-radius: 0px 0px 10px 10px;
   display: none;
   animation: bar 0.5s;
@@ -343,12 +335,7 @@ a{
   box-shadow: 2px 2px 30px rgba(0,0,0,0.08);
   transition: all ease 0.3s;
 }
-.s-btn:hover{
-  background-color:#4a90e2;
-  border: 1px solid #4a90e2;
-  color:#FFFFFF;
-  transition: all ease 0.3s;
-}
+
 .s-box:hover .bar{
   display: block;
 }
@@ -359,21 +346,5 @@ a{
   100%{
     width:100px;
   }
-}
-@media(max-width:1050px){
-  .s-box-container{
-    flex-wrap: wrap;
-    
-  }	
-  .services{
-    height: auto;
-  }
-  .s-heading{
-    margin: 15px;
-  }
-  .s-box{
-    flex-grow: 1;
-  }
-  
 }
 
