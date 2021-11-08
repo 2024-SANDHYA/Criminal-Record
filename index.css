@@ -292,6 +292,7 @@ hr{
 .footer , .foot{
   background-color: #ffffff;
   margin-bottom: 0px;
+  font-family: sans-serif;
   color: #000;
 
 }
@@ -309,10 +310,12 @@ hr{
   text-transform: uppercase;
 }
 .des{
-  font-size:17px;
+  font-size:14px;
+  line-height:20px;
   width:800px;
   text-align: center;
- margin-left: 200px;;
+ margin-left: 200px;
+ letter-spacing: 1px;
 }
 span{
   color: rgb(255, 123, 0);
@@ -322,12 +325,7 @@ span{
   margin-bottom: 0px;
 }
 
-.foot2 p{
-background-color:#4c5358;
-text-align: center;
-margin-bottom: 0px;
-padding-bottom: 0px;
-}
+/* =========ICONS========== */
 
 .icons{
   float: right;
@@ -364,11 +362,6 @@ i:nth-child(3):hover{
 i:nth-child(4):hover{
   color: #1DA1F2;
 }
-
-
-.f2{
-  font-size:18px;
-}
 .socials{
   list-style: none;
   display: flex;
@@ -386,4 +379,17 @@ i:nth-child(4):hover{
   font-size: 1.1rem;
   width: 20px;
   transition: color .4s ease;
+}
+
+/* =====FOOTER-2===== */
+.foot2 p{
+  background-color:#4c5358;
+  padding-top: 10px;
+  text-align: center;
+  margin-bottom: 0px;
+  padding-bottom: 2px;
+  }
+
+.f2{
+  font-size:18px;
 }
