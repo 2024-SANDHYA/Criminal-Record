@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@800&family=Fruktur&family=Montserrat:wght@800&family=Nunito:wght@800;900&family=Raleway:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
 html {
   scroll-behavior: smooth;
 }
@@ -25,7 +26,7 @@ body{
       background-size:300px;
       height:350px;
       margin-left:950px;
-      margin-top:-290px;
+      margin-top:-320px;
       -webkit-animation: mover 1s infinite  alternate;
       animation: mover 1s infinite  alternate;
       -webkit-animation: mover 1s infinite  alternate;
@@ -63,25 +64,20 @@ body{
     } 
 
 
-
 .ban-text{
   font-family: 'Raleway', sans-serif;
       font-size:50px;
-      padding-left: 30px;
-      padding-top: 5%;
+      padding-left: 60px;
+      padding-top: 3%;
     }
-
     .ban-para{
-      font-family: 'Raleway', sans-serif;
-      font-size:16px;
-      padding-left: 20px;
-      padding-top: 5%;
+      font-size:24px;
+      text-decoration:none;
+      padding-left: 70px;
+      max-width:420px;
+      line-height: 1;
+      font-family: 'Dongle', sans-serif;
     }
-    p{
-      max-width:400px;
-      font-family: 'Inconsolata', monospace;
-    }
-
     .content {
       padding: 16px;
     }
