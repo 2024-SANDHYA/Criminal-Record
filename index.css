@@ -24,6 +24,8 @@ body{
   transform: scale(1.4);
   transition: 0.5s all ease-in-out;
 }
+
+
     .vert-move{
       background-image:url(./assets/final-banner.png);
       background-repeat:no-repeat;
@@ -82,6 +84,8 @@ body{
       line-height: 1;
       font-family: 'Dongle', sans-serif;
     }
+
+    /* --------For Sticky Nav-Bar------- */
     .content {
       padding: 16px;
     }
@@ -93,7 +97,16 @@ body{
       z-index: 1;
       background-color: #e9e7e5;
     }
+    .sticky + .content {
+      padding-top: 60px;
+    }
 
+    #navbar{
+      overflow: hidden;
+
+    }
+
+/* Get Started button */
 
 .get-stat{
   padding-left: 5%;
@@ -115,20 +128,58 @@ body{
     
     .btn:hover{
       border: solid #af954c;
-      background-color:azure;
+      background-color:rgb(255, 255, 255);
       color: #000;
     }
-.sticky + .content {
-      padding-top: 60px;
-    }
 
-    #navbar{
-      overflow: hidden;
+/* ================== DONATE ================== */
 
-    }
+.donate-ban{
+  background: url(./assets/bg-2.png)no-repeat;
+  width:100%;
+  height:100%;
+  font-family: calibri;
+  padding-top: 2%;
+  background-size:100%;
+  padding-bottom:2%;
+  margin-bottom:0px;
 
+}
+.don-text{
+  width:400px;
+  padding-left: 10%;
+  color:#161515;
+}
+.don-head{
+  padding-left: 10%;
+  }
 
-/* How it Works */
+  .donbutton{
+    float:right;
+    margin-top:-100px;
+    padding-right: 10%;
+  }
+      .don-btn {
+        background-color: rgb(119, 103, 87);
+        border: none;
+        color: white;
+        padding: 15px 60px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius:30px;
+        cursor: pointer;
+      }
+  
+      
+      .don-btn:hover{
+        border: solid #af954c;
+        background-color:rgb(255, 255, 255);
+        color: #000;
+      }
+/*============== How it Works ============== */
 a{
   text-decoration:none;
 }
@@ -224,4 +275,5 @@ a{
     width:100px;
   }
 }
+
 
