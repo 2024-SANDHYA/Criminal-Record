@@ -180,13 +180,6 @@ body{
         color: #000;
       }
 
-      hr{ 
-        height:20px;
-        padding:0px;
-        margin:0px;
-        background-color:#af954c;
-        border:none;
-      } 
 /*============== How it Works ============== */
 a{
   text-decoration:none;
@@ -289,36 +282,42 @@ a{
 
 
 /* FOOTER */
-
+hr{ 
+  height:10px;
+  padding:0px;
+  margin:0px;
+  background-color:#af954c;
+  border:none;
+} 
 .footer , .foot{
-  background-color: #0a0a1b;
+  background-color: #ffffff;
   margin-bottom: 0px;
+  color: #000;
 
 }
 
 .co{
-  background-color: #0a0a1b;
-  width: 50%;
+  background-color: #ffffff;
   margin-bottom: 0px;
   padding-top: 2px;
   padding-right: 26%;
   cursor:context-menu;
 }
-.co h2{
-  color: #fff;
+.foot-head{
   margin-bottom: 0px;
-  padding-left: 10%;
+  padding-left: 60%;
   text-transform: uppercase;
-  border-bottom: 2px solid red;
 }
 .des{
   font-size:17px;
+  width:800px;
+  text-align: center;
+ margin-left: 200px;;
 }
 span{
   color: red;
 }
 .foot p {
-  color: #fff;
   padding-left: 5%;
   margin-bottom: 0px;
 }
@@ -326,7 +325,6 @@ span{
 .foot2 p{
 background-color:#273036;
 text-align: center;
-color: #fefefa;
 margin-bottom: 0px;
 padding-bottom: 0px;
 }
@@ -334,12 +332,12 @@ padding-bottom: 0px;
 .icons{
   float: right;
   padding-right:2%;
-  color: white;
+  color: rgb(14, 13, 13);
   
 }
 
 i{
-  color: #fff;
+  color: rgb(3, 3, 3);
   margin-left: 30px;
   cursor: pointer;
   font-size: 1.7rem;
@@ -372,4 +370,33 @@ i:nth-child(2):hover{
 
 .f2{
   font-size:18px;
+}
+.socials{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0 3rem 0;
+}
+
+.socials li{
+  margin: 0 10px;
+}
+
+.socials a{
+  text-decoration: none;
+  color: #fff;
+  border: 1.1px solid white;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.socials a i{
+  font-size: 1.1rem;
+  width: 20px;
+  transition: color .4s ease;
+}
+
+.socials a:hover i{
+  color: aqua;
 }
