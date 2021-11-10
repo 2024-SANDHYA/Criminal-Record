@@ -2,6 +2,8 @@ import ReactMapGl, { Marker, FlyToInterpolator } from "react-map-gl";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
+import {IsLoggedIn} from './Login1';
+import {withRouter} from "react-router-dom";
 
 require('dotenv').config();
 
@@ -15,7 +17,7 @@ const Map = () => {
     const [ReportedBy, setReportedBy] = useState("");
     const [age, setAge] = useState(0);
     const [CrimeBeingReported, setCrimeBeingReported] = useState("");
-    const [locality, setLocality] = useState('');
+    const [Locality, setLocality] = useState('');
 
     useEffect(() => {
         Axios.get("http://localhost:3001/Map")
@@ -27,14 +29,14 @@ const Map = () => {
 
     function addCrimetoDB(){
         Axios.post("http://localhost:3001/create", {
-            Location,
+            Locality,
             ReportedBy,
             age,
             CrimeBeingReported,
         })
         .then(() => {
             setListOfCrimes([...listOfCrimes, {
-                Location,
+                Locality,
                 ReportedBy,
                 age,
                 CrimeBeingReported,
@@ -102,7 +104,8 @@ const Map = () => {
               .then(data => {
                 console.log(data);
                 setPlace(data.features[0].place_name);
-                console.log(place);
+                setLocality(data.features[2].place_name);
+                console.log(place, Locality);
               });
     }
 
@@ -110,8 +113,9 @@ const Map = () => {
         setCrimeForm(true);
     }
 
-    return ( 
-        <div className="mapPage">
+    return (
+        <div>
+            { <div className="mapPage">
             <div className="sidebar">
                 <MapboxAutocomplete 
                         publicKey={mapboxAPIkey}
@@ -124,18 +128,18 @@ const Map = () => {
                 </div>
                 <button className="reportCrime" onClick={openCrimeForm}>Report Crime</button>
                 {crimeForm && <div className="addCrime">
-                    <input type="text" placeholder="Location..." onChange={(event) => setLocation(event.target.value)}/>
                     <input type="text" placeholder="Reported by..." onChange={(event) => setReportedBy(event.target.value)}/>
                     <input type="number" placeholder="Age..." onChange={(event) => setAge(event.target.value)}/>
                     <input type="text" placeholder="Crime..." onChange={(event) => setCrimeBeingReported(event.target.value)}/>
                     <button className="addToDataBase" onClick={addCrimetoDB}>Add Crime Report</button>
                 </div>}
-                <div><br />List of past crimes in this area: </div>
+                <div><br />List of past crimes in this locality: </div>
                 <div className="pastCrimes">
+                    <div>Locality:{Locality}</div>
                     {listOfCrimes.map((crime) => {
                         return (
-                            <div>
-                                <br />Location: {crime.Location}<br />
+                            <div><br />
+                                {/* <br />Location: {crime.Location}<br /> */}
                                 Reported By: {crime.ReportedBy}<br />
                                 Age: {crime.age}<br />
                                 Crime Being Reported: {crime.CrimeBeingReported}<br />
@@ -155,12 +159,12 @@ const Map = () => {
                 fetchPlace(latitude1, longitude1);
                 }}>
                 <Marker latitude = {parseFloat(lat)} longitude = {parseFloat(long)} offsetTop={-viewport.zoom}><img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png" width={viewport.zoom*5} height={viewport.zoom*5}/></Marker>
-
             </ReactMapGl>
-        </div>
+        </div>}
+        {/* {IsLoggedIn==false && <div className="LoginToContinue">Please Login to Continue</div>} */}
+    </div>
         
 
     );
 }
-
-export default Map;
+export default withRouter(Map);

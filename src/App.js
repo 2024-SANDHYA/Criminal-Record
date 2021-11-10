@@ -6,6 +6,7 @@ import Login1 from './Login1.js';
 import Home from './Home';
 import Metadata from './Metadata';
 import Signup from './Signup';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
         <div className="flexmap">
         <Navbar />
           <div className="map">
-            <Route exact path="/map" component={Map}>
+            <Route exact path="/Map" component={Map}>
               <Map />
             </Route>
+            {/* <ProtectedRoute path="/Map" component={Map} isAuth={}/> */}
           </div>
         </div>
         <div className="home">

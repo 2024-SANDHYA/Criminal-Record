@@ -5,12 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc, getDocs, doc, setDoc, query, where } from "firebase/firestore"; 
+import validator from "validator";
 
 const Login1 = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [userExists, setUserExists] = useState("");
     const firebaseConfig = {
         apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
         authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -25,25 +26,36 @@ const Login1 = () => {
     require("firebase/firestore");
     const db = getFirestore();
     
-    if(email!="" && password.length>6){
-      createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log("created");
-        console.log(user.displayName, user.emailVerified, user.metadata);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ..
-      });
-      const docRef = addDoc(collection(db, "users"), {
-        email: email,
-        password: password,
-      });
+    async function handleSubmit(event){
+      event.preventDefault();
+      if (!validator.isEmail(email)) {
+        setUserExists('Enter Valid Email!');
+        return;
+      }
+      if(email!="" && password.length>6){
+        const q = query(collection(db, "users"), where("email", "==", email));
+        const querySnapshot = await getDocs(q);
+        let n = 0;
+        querySnapshot.forEach((doc) => {
+          n = 1;
+          console.log(doc.id, " => ", doc.data());
+        });
+        if(n==0){
+          try{
+            const docRef = await setDoc(doc(db, "users", email), {
+              email: email,
+              password: password,
+          });
+          setUserExists("Email has been added. Please sign in using the same email and password.")
+          }
+          catch (e) {
+            console.error("Error adding document: ", e);
+            } 
+          }
+          else{
+            setUserExists("Email already exists. Please sign in with the same email or enter a new email.")
+          }
+        }
     }
 
   
@@ -52,10 +64,7 @@ const Login1 = () => {
     function validateForm() {
         return email.length > 0 && password.length > 0;
       }
-    
-      function handleSubmit(event) {
-        event.preventDefault();
-      }
+  
     
       return (
         <div className="Signup">
@@ -82,6 +91,7 @@ const Login1 = () => {
               Signup
             </Button>
           </Form>
+          <div>{userExists}</div>
         </div>
       );
 }

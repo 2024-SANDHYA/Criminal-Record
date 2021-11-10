@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const crimeSchema = new mongoose.Schema({
-    Location: {
+    Locality: {
         type: String,
         required: true,
     },
