@@ -21,7 +21,11 @@
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+<<<<<<< HEAD
     "validator": "^13.7.0",
+=======
+    "react-scroll": "^1.8.4",
+>>>>>>> 58768275a808ea512d30dfae6332e2826eb745aa
     "web-vitals": "^1.0.1"
   },
   "scripts": {

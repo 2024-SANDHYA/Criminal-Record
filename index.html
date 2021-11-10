@@ -4,32 +4,140 @@
     <head>
         <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inconsolata:wght@300&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Prata&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="index.css">
-        <link rel="icon" href="">
-
+        <script src="https://kit.fontawesome.com/9603a582d3.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./index.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="./assets/favicon.png">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Foot-prints</title>
 </head>
 <body>
 
-  <header>
-    <a href="#" class="header-text">Main</a>
+  <header id="navbar">
+    <a href="index.html"><img class="image" img src="./assets/favicon.png"></a>
     <div class="nav">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+      <a href="index.html" class="nav-list">Home</a>
+      <a href="#about">About Us</a>
       <a href="#">FAQs</a>
+      <a href="#">Contact</a>
+      <a href="#">Login</a>
+      
     </div>
   </header>
-  <h2>Design,
-    <br>Developement,
-    <br>Hosting</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-  <button type="button" class="log-sign-in">GET STARTED</button>
-  <div class="image">
+
+  
+  <section id="about">
+  <h2 class="ban-text">Following your
+    <br>FootPrints </h2>
+  <p class="ban-para">Alert | Aware | Secure 
+  </p>
+  <div class="get-stat">
+  <button type="button" class="btn">GET STARTED</button>
+</div>
+  <div class="vert-move">
   </div>
+</section>
+
+
+<section class="services" id="about us">
+	<div class="s-heading">
+	<h1>How <span class="block"> it </span>Works?</h1>
+	<p>Get Updates about Crimes happening around you.
+    On the Go !</p>
+	</div>
+	<!--services-box-container------------------->
+	<div class="s-box-container">
+	<!--service-box-1---------------->	
+	<div class="s-box">
+	<!--top-bar-------->
+	<div class="bar"></div>
+	<!--img---------->
+	<img alt="1" src="./assets/image1.png" />
+	<!--servies-name---------->
+	<h1>Sign Up</h1>
+	<!--details------>
+		<p>Sign up and give access to your current location for the tracking.</p>
+
+	</div>
+		<!--service-box-1---------------->	
+	<div class="s-box">
+	<!--top-bar-------->
+	<div class="bar"></div>
+	<!--img---------->
+	<img alt="2" src="./assets/undraw_Portfolio_update_re_jqnp.png" />
+	<!--servies-name---------->
+	<h1>Update the Record</h1>
+	<!--details------>
+		<p>Add past or present crimes you want to report in your locality.</p>
+
+	</div>
+		<!--service-box-3---------------->	
+	<div class="s-box">
+	<!--top-bar-------->
+	<div class="bar"></div>
+	<!--img---------->
+	<img alt="3" src="./assets/undraw_Map_dark_re_36sy.png" />
+	<!--servies-name---------->
+	<h1>Statistics</h1>
+	<!--details------>
+		<p>Save your routes, get crime statistics for your area, and get alerts whenever you enter an area with a high crime rate.</p>
+
+	</div>
+	</div>
+	</section>
+
+  <section id="donate" class="donate-ban">
+<h1 class="don-head">Let's fight against the crime</h1>
+<p class="don-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+   ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+   ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+   <div class="donbutton">
+    <button type="button" class="don-btn">DONATE</button>
+  </section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+  <hr> 
+  <div class="foot">
+
+    <!-- FOOTER - 1 -->
+    <div class="co">
+      <h2 class="foot-head">Foot-Prints</h2>    
+   <p class="des"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>        
+    </div>
+    <ul class="socials">
+      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+      <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+      <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+   </ul>
+    </div>
+    <!-- FOOTER -2 -->
+
+    <div class="foot2">
+      <p class="f2"><span>Foot-Prints</span> | ©2021 All rights reserved<br></p>
+      </div>
+          </div>
+
+        </footer>
+
+  <script>
+window.onscroll = function() {myFunction()};
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+} 
+  </script>
 
 </body>
 </html>
