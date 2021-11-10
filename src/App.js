@@ -1,26 +1,24 @@
 import './index.css';
+import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Navbar from './Navbar';
+import Header from './Header';
 import Map from './Map.js';
 import Login1 from './Login1.js';
 import Home from './Home';
 import Metadata from './Metadata';
+import About from './About';
+import Contact from './Contact';
 
 function App() {
   return (
     <Router>
     <div className="App">
         <Metadata />
-        <div className="flexmap">
-        <Navbar />
-          <div className="map">
-            <Route exact path="/map" component={Map}>
-              <Map />
-            </Route>
-          </div>
-        </div>
+
+        <Header />
+
         <div className="home">
-          <Route exact path="/" component={Home}>
+          <Route exact path="/home" component={Home}>
             <Home />
           </Route>
         </div>
@@ -31,8 +29,29 @@ function App() {
           </Route>
         </div>
 
+        <div className="map">
+            <Route exact path="/map" component={Map}>
+              <Map />
+            </Route>
+        </div>
+
+        <div className="about">
+            <Route exact path="/about" component={About}>
+              <About />
+            </Route>
+        </div>
+
+        <div className="contact">
+            <Route exact path="/contact" component={Contact}>
+              <Contact />
+            </Route>
+        </div>
+
+    <Home />
+
     </div>
     </Router>
+
   );
 }
 
