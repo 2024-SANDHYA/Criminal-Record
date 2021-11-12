@@ -11,7 +11,8 @@ app.use(cors());
 mongoose.connect("mongodb+srv://user1:uh5iv4-*BUxF$rN@cluster0.m0nko.mongodb.net/CrimeApp?retryWrites=true&w=majority");
 
 app.get("/Map", (req, res) => {
-    CrimeModel.find({}, (err, result) => {
+    let locality = req.query["Locality"];
+    CrimeModel.find({Locality: locality}, (err, result) => {
         if(err){
             res.json(err);
         }

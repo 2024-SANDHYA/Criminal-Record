@@ -22,7 +22,7 @@ const Home = () => {
                     <img src = {banner} alt="banner-img" className="banner-img" />
                 </div>
                 <div className="get-started">
-                    <button className = "start-btn"><Link to="/login">Get Started</Link></button>
+                <Link to="/login"><button className = "start-btn">Get Started</button></Link>
                     
                 </div>
 

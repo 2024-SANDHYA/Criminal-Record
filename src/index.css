@@ -66,6 +66,13 @@
   margin-right: 80px;
 }
 
+.start-btn{
+  background-color: goldenrod;
+  color: white;
+  border-radius: 30px;
+  border-color: goldenrod;
+  width: 250px;
+}
 
 .s-heading{
   text-align:center;
@@ -185,26 +192,53 @@ span{
 }
 
 .displayLocation{
-  font-size: 0.8em;
+  font-size: 1em;
 }
 .mapPage{
   display: flex;
-  overflow: hidden;
+  
 }
 .sidebar{
-  max-height:580px;
-  max-width: 270px;
+  max-height:660px;
+  max-width: 300px;
   text-align: center;
+  overflow: scroll;
 }
 .pastCrimes{
   /* margin:4px, 4px; */
-  font-size: 0.8em;
+  font-size: 0.95em;
   padding:4px;
   width: 270px;
   max-height: 375px;
   overflow-x: hidden;
   overflow-y: auto;
   text-align:justify;
+}
+#change-loc {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+}
+.addToDataBase, .reportCrime{
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
 }
 .log-sign-in{
   background-color:#236ee8;

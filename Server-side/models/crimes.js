@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 
 const crimeSchema = new mongoose.Schema({
+    Latitude: {
+        type: Number,
+        required: true,
+    },
+    Longitude: {
+        type: Number,
+    },
     Locality: {
         type: String,
         required: true,
@@ -16,7 +23,11 @@ const crimeSchema = new mongoose.Schema({
     CrimeBeingReported: {
         type: String,
         required: true,
-    }
+    },
+    date: {
+        type: String,
+        required: true,
+    },
 });
 
 const CrimeModel = mongoose.model("crimes", crimeSchema);

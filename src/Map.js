@@ -7,6 +7,8 @@ import {withRouter} from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc, getDocs, doc, setDoc, query, where } from "firebase/firestore"; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 require('dotenv').config();
 
@@ -21,6 +23,7 @@ const Map = () => {
     const [age, setAge] = useState(0);
     const [CrimeBeingReported, setCrimeBeingReported] = useState("");
     const [Locality, setLocality] = useState('');
+    const [date, setDate] = useState("");
 
     const firebaseConfig = {
         apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -52,31 +55,7 @@ const Map = () => {
               }
         }
 
-    // useEffect(() => {
-    //     Axios.get("http://localhost:3001/Map")
-    //     .then((response) => {
-    //         setListOfCrimes(response.data);
-    //         console.log(response.data);
-    //     })
-    // }, [])
-
-    // function addCrimetoDB(){
-    //     Axios.post("http://localhost:3001/create", {
-    //         Locality,
-    //         ReportedBy,
-    //         age,
-    //         CrimeBeingReported,
-    //     })
-    //     .then(() => {
-    //         setListOfCrimes([...listOfCrimes, {
-    //             Locality,
-    //             ReportedBy,
-    //             age,
-    //             CrimeBeingReported,
-    //         }])
-    //     })
-    // }
-
+    
     const mapboxAPIkey = process.env.REACT_APP_MAPBOX_API_KEY;
     const [lat, setLatitude] = useState(17.5416206);
     const [long, setLongitude] = useState(78.574097);
@@ -91,8 +70,60 @@ const Map = () => {
         pitch: 10
     });
 
+    useEffect(() => {
+        Axios.get("http://localhost:3001/Map", {params: {Locality: Locality}})
+        .then((response) => {
+            setListOfCrimes(response.data);
+            console.log(response.data);
+        })
+    }, [Locality]);
 
-    async function _suggestionSelect(result, lati, lng, text) {
+    function addCrimetoDB(){
+        Axios.post("http://localhost:3001/create", {
+            Latitude: lat,
+            Longtitude: long,
+            Locality,
+            ReportedBy,
+            age,
+            CrimeBeingReported,
+            date,
+        })
+        .then(() => {
+            setListOfCrimes([...listOfCrimes, {
+                Latitude: lat,
+                Longtitude: long,
+                Locality,
+                ReportedBy,
+                age,
+                CrimeBeingReported,
+                date,
+            }])
+        })
+    }
+
+
+    // async function showDB(){
+    //     setListOfCrimes([]);
+    //     const q = query(collection(db, "crimeReports"), where("Locality", "==", Locality));
+    //     const querySnapshot = await getDocs(q);
+    //     let n=0;
+    //     querySnapshot.forEach((doc) => {
+    //         console.log(doc.data().Locality);
+    //         setReportedBy(doc.data().ReportedBy);
+    //         setAge(doc.data().age);
+    //         setCrimeBeingReported(doc.data().CrimeBeingReported);
+    //         console.log(n++);
+    //         setListOfCrimes([...listOfCrimes, {
+    //             Locality: Locality,
+    //             ReportedBy: ReportedBy,
+    //             age: age,
+    //             CrimeBeingReported: CrimeBeingReported,
+    //         }]);
+    //     });
+    // }
+
+
+    function _suggestionSelect(result, lati, lng, text) {
         console.log(result, lati, lng, text);
         setLatitude(parseFloat(lati));
         setLongitude(parseFloat(lng));
@@ -107,47 +138,22 @@ const Map = () => {
             transitionDuration: 3000,
             transitionInterpolator: new FlyToInterpolator(),
           });
-        setListOfCrimes([]);
-        const q = query(collection(db, "crimeReports"), where("Locality", "==", Locality));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            console.log(doc.data());
-            setListOfCrimes([...listOfCrimes, {
-                Locality: Locality,
-                ReportedBy: ReportedBy,
-                age: age,
-                CrimeBeingReported: CrimeBeingReported,
-            }]);
-        });
+        //showDB();
       }
     
     async function getMyLocation(){
-        navigator.geolocation.getCurrentPosition(showPosition);
-        setListOfCrimes([]);
-        const q = query(collection(db, "crimeReports"), where("Locality", "==", Locality));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            console.log(doc.data());
-            setReportedBy(doc.data().ReportedBy);
-            setAge(doc.data().age);
-            setCrimeBeingReported(doc.data().CrimeBeingReported);
-            setListOfCrimes([...listOfCrimes, {
-                Locality: Locality,
-                ReportedBy: ReportedBy,
-                age: age,
-                CrimeBeingReported: CrimeBeingReported,
-            }]);
-        });
+        await navigator.geolocation.getCurrentPosition(showPosition);
+        //showDB();
     }
 
-    function showPosition(position){
+    async function showPosition(position){
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
         latitude1 = position.coords.latitude;
         longitude1 = position.coords.longitude;
-        console.log(position.coords.latitude, position.coords.longitude);
-        console.log(lat, long);
-        fetchPlace(position.coords.latitude, position.coords.longitude);
+        //console.log(position.coords.latitude, position.coords.longitude);
+        //console.log(lat, long);
+        await fetchPlace(position.coords.latitude, position.coords.longitude);
         setViewport({
             ...viewport,
             longitude: longitude1,
@@ -158,14 +164,14 @@ const Map = () => {
           });
     }
 
-    function fetchPlace(latitude, longitude){
-        fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxAPIkey}`)
+    async function fetchPlace(latitude, longitude){
+        await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxAPIkey}`)
               .then(response => response.json())
               .then(data => {
-                console.log(data);
+                //console.log(data);
                 setPlace(data.features[0].place_name);
                 setLocality(data.features[2].place_name);
-                console.log(place, Locality);
+                //console.log(place, Locality);
               });
     }
 
@@ -182,18 +188,19 @@ const Map = () => {
                         inputClass='form-control search'
                         onSuggestionSelect={_suggestionSelect}
                         resetSearch={true}/>
-                <button id="changeloc" onClick={getMyLocation}>Get my location</button>
+                <button id="change-loc" onClick={getMyLocation}>Get my location</button>
                 <div className="displayLocation">
                     Location: {place}
                 </div>
                 <button className="reportCrime" onClick={openCrimeForm}>Report Crime</button>
                 {crimeForm && <div className="addCrime">
-                    <input type="text" placeholder="Reported by..." onChange={(event) => setReportedBy(event.target.value)}/>
-                    <input type="number" placeholder="Age..." onChange={(event) => setAge(event.target.value)}/>
-                    <input type="text" placeholder="Crime..." onChange={(event) => setCrimeBeingReported(event.target.value)}/>
+                    <input type="text" className="form-control" placeholder="Reported by..." onChange={(event) => setReportedBy(event.target.value)}/>
+                    <input type="number" className="form-control" placeholder="Age..." onChange={(event) => setAge(event.target.value)}/>
+                    <input type="text" className="form-control" placeholder="Crime..." onChange={(event) => setCrimeBeingReported(event.target.value)}/>
+                    <input type="text" className="form-control" placeholder="Date(dd/mm/yyyy)..." onChange={(event) => setDate(event.target.value)}/>
                     <button className="addToDataBase" onClick={addCrimetoDB}>Add Crime Report</button>
                 </div>}
-                <div><br />List of past crimes in this locality: </div>
+                <div>List of past crimes in this locality: </div><br />
                     <div>Locality: {Locality}</div>
                 <div className="pastCrimes">
                     {listOfCrimes.map((crime) => {
@@ -203,6 +210,7 @@ const Map = () => {
                                 Reported By: {crime.ReportedBy}<br />
                                 Age: {crime.age}<br />
                                 Crime Being Reported: {crime.CrimeBeingReported}<br />
+                                Date: {crime.date}<br />
                             </div>
                         )
                     })}
@@ -210,7 +218,7 @@ const Map = () => {
             </div>
             <ReactMapGl {...viewport} mapboxApiAccessToken={mapboxAPIkey}
             mapStyle="mapbox://styles/mapbox/light-v9" onViewportChange={nextViewport => {
-                console.log(nextViewport);
+                //console.log(nextViewport);
                 setViewport(nextViewport);
                 setLatitude(parseFloat(nextViewport.latitude));
                 setLongitude(parseFloat(nextViewport.longitude));
