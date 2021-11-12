@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -11,24 +11,20 @@ import { getFirestore } from "firebase/firestore";
 import { collection, addDoc, getDocs, doc, setDoc, query, where} from "firebase/firestore"; 
 import validator from 'validator';
 
-let isLoggedIn = false;
-
-const authentication = {
-  isLoggedIn: false,
-  onAuthentication(){
-    this.isLoggedIn = true;
-  },
-  getLoginStatus(){
-    return this.isLoggedIn;
-  },
-}
 
 const Login1 = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [userExists, setUserExists] = useState("");
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [isLoggedIn, setisLoggedIn] = useState("false");
+    window.localStorage.setItem("isLoggedIn", "false");
 
+    // useEffect(() => {
+    //   window.localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
+    //   console.log(window.localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn)));
+    // }, [isLoggedIn]);
+
+  
     const firebaseConfig = {
         apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
         authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -64,17 +60,25 @@ const Login1 = () => {
             setUserExists("Password entered is wrong. Please enter the right password.")
           }
           else{
-            isLoggedIn = true;
-            window.localStorage.setLoggedIn(true);
+            setisLoggedIn("true");
+            window.localStorage.setItem("isLoggedIn", isLoggedIn);
+            console.log(window.localStorage.getItem("isLoggedIn"));
           }
         });
         if(n==0){
            setUserExists("Please sign up to continue.");
           }
       }
+
+      // function Logout(){
+      //   setisLoggedIn("false");
+      //   window.localStorage.setItem("isLoggedIn", isLoggedIn);
+
+      // }
     
       return (
-        <div className="Login">
+        <>
+        { isLoggedIn=="false" && <div className="Login">
           <Form>
             <Form.Group controlId="email">
               <Form.Label>Email </Form.Label>
@@ -97,12 +101,17 @@ const Login1 = () => {
             <Button disabled={!validateForm()} onClick={handleSubmit}>
               Login
             </Button><br /><br />
-            {/* <button onClick={signinwithgoogle}>Google</button><br /> */}
           </Form>
-          <button className="gotomap"><Link to={{pathname: "/Map", data: loggedIn}}>Go to Map</Link></button>
           <div>{userExists}</div>
           <div className="signup">Don't have an account?<Link to="/signup">Sign up</Link></div>
-        </div>
+        </div>}
+        {isLoggedIn=="true" && <div className="loggedin">
+          <div>You have successfully logged in.</div>
+          <button className="gotomap"><Link to="/Map">Go to Map</Link></button>
+          {/* <div className="logout"><Button onClick={Logout}>Logout</Button></div> */}
+        </div>}
+        
+        </>
       );
 }
 

@@ -7,16 +7,15 @@ const Header = () => {
         <>
            <header className='header'>
           
-           <Link className='links' to='/'>
-            Home
-           </Link>
+           <Link className='links' to='/'>Home</Link>
 
             <nav className = "navbar">
                 <ul>
-                <Link className='links' to="/Map">Map</Link>
+                {/* <Link className='links' to="/Map">Map</Link> */}
                 <Link className='links' to="/about">About</Link>
                 <Link className='links' to="/contact">Contact Us</Link>
-                <Link className='links' to="/login">Login</Link>
+                <Link className='links' to="/login">Login/Logout</Link>
+                <Link className='links' to="/signup">Sign up</Link>
                 </ul>
             </nav>
             </header>

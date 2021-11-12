@@ -12,7 +12,8 @@ const Footer = () => {
             <p className= "f2"><span className="copyright">Foot-Prints | ©2021 All rights reserved</span><br /></p>
             <p className= "contact">Contact Us: <a className="contact" href="mailto:anushkanema25@gmail.com">Email</a></p>
             </div>
-        </div>
+          </div>
+
     );
 }
 

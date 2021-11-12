@@ -4,6 +4,9 @@ import Axios from "axios";
 import MapboxAutocomplete from 'react-mapbox-autocomplete';
 import {IsLoggedIn} from './Login1';
 import {withRouter} from "react-router-dom";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, setDoc, query, where } from "firebase/firestore"; 
 
 require('dotenv').config();
 
@@ -19,30 +22,60 @@ const Map = () => {
     const [CrimeBeingReported, setCrimeBeingReported] = useState("");
     const [Locality, setLocality] = useState('');
 
-    useEffect(() => {
-        Axios.get("http://localhost:3001/Map")
-        .then((response) => {
-            setListOfCrimes(response.data);
-            console.log(response.data);
-        })
-    }, [])
+    const firebaseConfig = {
+        apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+        authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+        projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+        storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+        appId: process.env.REACT_APP_FIREBASE_APP_ID,
+        measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+      };
+    const app = initializeApp(firebaseConfig);
+    require("firebase/firestore");
+    const db = getFirestore();
 
-    function addCrimetoDB(){
-        Axios.post("http://localhost:3001/create", {
-            Locality,
-            ReportedBy,
-            age,
-            CrimeBeingReported,
-        })
-        .then(() => {
-            setListOfCrimes([...listOfCrimes, {
-                Locality,
-                ReportedBy,
-                age,
-                CrimeBeingReported,
-            }])
-        })
-    }
+    async function addCrimetoDB(){
+        if(ReportedBy!="" && age!=0 && CrimeBeingReported!=""){
+            try{
+                const docRef = await addDoc(collection(db, "crimeReports"), {
+                  Locality: Locality,
+                  ReportedBy: ReportedBy,
+                  age: age,
+                  CrimeBeingReported: CrimeBeingReported,
+              });
+              console.log("Data has been added to the database");
+              }
+              catch (e) {
+                console.error("Error adding document: ", e);
+                } 
+              }
+        }
+
+    // useEffect(() => {
+    //     Axios.get("http://localhost:3001/Map")
+    //     .then((response) => {
+    //         setListOfCrimes(response.data);
+    //         console.log(response.data);
+    //     })
+    // }, [])
+
+    // function addCrimetoDB(){
+    //     Axios.post("http://localhost:3001/create", {
+    //         Locality,
+    //         ReportedBy,
+    //         age,
+    //         CrimeBeingReported,
+    //     })
+    //     .then(() => {
+    //         setListOfCrimes([...listOfCrimes, {
+    //             Locality,
+    //             ReportedBy,
+    //             age,
+    //             CrimeBeingReported,
+    //         }])
+    //     })
+    // }
 
     const mapboxAPIkey = process.env.REACT_APP_MAPBOX_API_KEY;
     const [lat, setLatitude] = useState(17.5416206);
@@ -59,7 +92,7 @@ const Map = () => {
     });
 
 
-    function _suggestionSelect(result, lati, lng, text) {
+    async function _suggestionSelect(result, lati, lng, text) {
         console.log(result, lati, lng, text);
         setLatitude(parseFloat(lati));
         setLongitude(parseFloat(lng));
@@ -70,14 +103,41 @@ const Map = () => {
             ...viewport,
             longitude: longitude1,
             latitude: latitude1,
-            zoom: 14,
+            zoom: 12,
             transitionDuration: 3000,
             transitionInterpolator: new FlyToInterpolator(),
           });
+        setListOfCrimes([]);
+        const q = query(collection(db, "crimeReports"), where("Locality", "==", Locality));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            console.log(doc.data());
+            setListOfCrimes([...listOfCrimes, {
+                Locality: Locality,
+                ReportedBy: ReportedBy,
+                age: age,
+                CrimeBeingReported: CrimeBeingReported,
+            }]);
+        });
       }
     
-      function getMyLocation(){
+    async function getMyLocation(){
         navigator.geolocation.getCurrentPosition(showPosition);
+        setListOfCrimes([]);
+        const q = query(collection(db, "crimeReports"), where("Locality", "==", Locality));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            console.log(doc.data());
+            setReportedBy(doc.data().ReportedBy);
+            setAge(doc.data().age);
+            setCrimeBeingReported(doc.data().CrimeBeingReported);
+            setListOfCrimes([...listOfCrimes, {
+                Locality: Locality,
+                ReportedBy: ReportedBy,
+                age: age,
+                CrimeBeingReported: CrimeBeingReported,
+            }]);
+        });
     }
 
     function showPosition(position){
@@ -92,7 +152,7 @@ const Map = () => {
             ...viewport,
             longitude: longitude1,
             latitude: latitude1,
-            zoom: 14,
+            zoom: 12,
             transitionDuration: 3000,
             transitionInterpolator: new FlyToInterpolator(),
           });
@@ -134,8 +194,8 @@ const Map = () => {
                     <button className="addToDataBase" onClick={addCrimetoDB}>Add Crime Report</button>
                 </div>}
                 <div><br />List of past crimes in this locality: </div>
+                    <div>Locality: {Locality}</div>
                 <div className="pastCrimes">
-                    <div>Locality:{Locality}</div>
                     {listOfCrimes.map((crime) => {
                         return (
                             <div><br />
