@@ -10,6 +10,7 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc, getDocs, doc, setDoc, query, where} from "firebase/firestore"; 
 import validator from 'validator';
+import img1 from './asset-2/undraw_press_play_re_85bj.svg';
 
 
 const Login1 = () => {
@@ -77,41 +78,41 @@ const Login1 = () => {
       // }
     
       return (
-        <>
-        { isLoggedIn=="false" && <div className="Login">
-          <Form>
-            <Form.Group controlId="email">
-              <Form.Label>Email </Form.Label>
-              <Form.Control
-                autoFocus
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group controlId="password">
-              <Form.Label>Password  </Form.Label>
-              <Form.Control
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Group>
-            <br />
-            <Button disabled={!validateForm()} onClick={handleSubmit}>
-              Login
-            </Button><br /><br />
-          </Form>
-          <div>{userExists}</div>
-          <div className="signup">Don't have an account?<Link to="/signup">Sign up</Link></div>
-        </div>}
-        {isLoggedIn=="true" && <div className="loggedin">
-          <div>You have successfully logged in.</div>
-          <button className="gotomap"><Link to="/Map">Go to Map</Link></button>
-          {/* <div className="logout"><Button onClick={Logout}>Logout</Button></div> */}
-        </div>}
-        
-        </>
+        <div className="login-signup-page">
+          <img src={img1} className="login-signup-img"></img>
+          { isLoggedIn=="false" && <div className="Login">
+            <Form>
+              <Form.Group controlId="email">
+                <Form.Label>Email </Form.Label>
+                <Form.Control
+                  autoFocus
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="password">
+                <Form.Label>Password  </Form.Label>
+                <Form.Control
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Form.Group>
+              <br />
+              <Button disabled={!validateForm()} onClick={handleSubmit}>
+                Login
+              </Button><br /><br />
+            </Form>
+            <div className="l-signup">Don't have an account?&nbsp;<Link to="/signup">Sign up</Link></div>
+            <div className="error-login-signup">{userExists}</div>
+          </div>}
+          {isLoggedIn=="true" && <div className="loggedin">
+            <div>You have successfully logged in.</div>
+            <Link to="/Map"><Button className="form-control">Go to Map</Button></Link>
+            {/* <div className="logout"><Button onClick={Logout}>Logout</Button></div> */}
+          </div>}
+        </div>
       );
 }
 
