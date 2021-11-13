@@ -210,8 +210,8 @@ span{
   padding:4px;
   width: 270px;
   max-height: 375px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
   text-align:justify;
 }
 #change-loc {
@@ -249,9 +249,17 @@ span{
   border-radius:10px;
   font-family: 'Prata', serif;
 }
+.login-signup-page{
+  display: flex;
+}
+.login-signup-img{
+  margin-left: 200px;
+  margin-top: 70px;
+  max-height: 470px;
+}
 .Login {
   margin-left: 550px;
-  margin-top: 100px;
+  margin-top: 200px;
 }
 #email.form-control {
   width: 300px;
@@ -262,12 +270,9 @@ span{
 .Login Button{
   margin-left: 105px;
 }
-.signup{
-  margin-left: 10px;
-}
 .Signup {
   margin-left: 550px;
-  margin-top: 100px;
+  margin-top: 200px;
 }
 #email.form-control {
   width: 300px;
@@ -278,7 +283,17 @@ span{
 .Signup Button{
   margin-left: 105px;
 }
-
+.l-signup{
+  text-align: center;
+}
+.loggedin{
+  margin-top: 300px;
+  margin-left: 500px;
+}
+.error-login-signup{
+  text-align: center;
+  color: red;
+}
 h2{
   font-family: 'Abril Fatface', cursive;
   padding-left: 60px;
