@@ -336,3 +336,14 @@ span{
   width: 20px;
   transition: color .4s ease;
 }
+
+label{
+    color: tomato;
+    font-family: 'Raleway';
+    font-size: smaller;
+}
+
+.form-control{
+  margin-bottom: 10px;
+
+}
