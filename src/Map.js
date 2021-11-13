@@ -217,7 +217,7 @@ const Map = () => {
                 </div>
             </div>
             <ReactMapGl {...viewport} mapboxApiAccessToken={mapboxAPIkey}
-            mapStyle="mapbox://styles/mapbox/light-v9" onViewportChange={nextViewport => {
+            mapStyle="mapbox://styles/safak/cknndpyfq268f17p53nmpwira" onViewportChange={nextViewport => {
                 //console.log(nextViewport);
                 setViewport(nextViewport);
                 setLatitude(parseFloat(nextViewport.latitude));
